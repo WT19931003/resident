@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="estateinformation-web:war">
+    <output-path>$PROJECT_DIR$/estateinformation-web/target</output-path>
+    <root id="archive" name="estateinformation-web.war">
+      <element id="artifact" artifact-name="estateinformation-web:war exploded" />
+    </root>
+  </artifact>
+</component>

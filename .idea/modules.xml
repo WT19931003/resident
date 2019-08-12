@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/estateinformation-basic-core/estateinformation-basic-core.iml" filepath="$PROJECT_DIR$/estateinformation-basic-core/estateinformation-basic-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/estateinformation-basic-util/estateinformation-basic-util.iml" filepath="$PROJECT_DIR$/estateinformation-basic-util/estateinformation-basic-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/estateinformation-common/estateinformation-common.iml" filepath="$PROJECT_DIR$/estateinformation-common/estateinformation-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/estateinformation-mapper/estateinformation-mapper.iml" filepath="$PROJECT_DIR$/estateinformation-mapper/estateinformation-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/estateinformation-parent.iml" filepath="$PROJECT_DIR$/estateinformation-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/estateinformation-service/estateinformation-service.iml" filepath="$PROJECT_DIR$/estateinformation-service/estateinformation-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/estateinformation-web/estateinformation-web.iml" filepath="$PROJECT_DIR$/estateinformation-web/estateinformation-web.iml" />
+    </modules>
+  </component>
+</project>

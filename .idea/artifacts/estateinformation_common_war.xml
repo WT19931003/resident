@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="estateinformation-common:war">
+    <output-path>$PROJECT_DIR$/estateinformation-common/target</output-path>
+    <root id="archive" name="estateinformation-common.war">
+      <element id="artifact" artifact-name="estateinformation-common:war exploded" />
+    </root>
+  </artifact>
+</component>

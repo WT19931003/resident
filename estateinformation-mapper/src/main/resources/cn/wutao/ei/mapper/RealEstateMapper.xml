@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wutao.ei.mapper.RealEstateMapper">
+  <resultMap id="BaseResultMap" type="cn.wutao.ei.domain.RealEstate">
+      <id column="id" jdbcType="BIGINT" property="id" />
+      <result column="projectName" jdbcType="VARCHAR" property="projectname" />
+      <result column="address" jdbcType="VARCHAR" property="address" />
+      <result column="houseType" jdbcType="VARCHAR" property="housetype" />
+      <result column="area" jdbcType="INTEGER" property="area" />
+      <result column="buidTime" jdbcType="BIGINT" property="buidtime" />
+      <result column="user_Id" jdbcType="BIGINT" property="userId" />
+      <result column="onBuidTime" jdbcType="VARCHAR" property="onBuidTime" />
+
+      <collection property="user" ofType="cn.wutao.ei.domain.User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="card_Id" property="cardId"/>
+      </collection>
+      <!--<association property="">
+      </association>-->
+    </resultMap>
+
+
+  <!--关联用戶表查询-->
+  <sql id="whereSql">
+  <where>
+    <if test="q != null and q != ''">
+        <if test=" user == 1">
+          tu.name like concat('%',#{q},'%')
+        </if>
+        <if test="user == 2">
+          tu.card_Id like concat('%',#{q},'%')
+        </if>
+    </if>
+  </where>
+  </sql>
+  <select id="queryPageList" parameterType="RealEstateQuery" resultMap="BaseResultMap" >
+    select tre.*,tu.*
+    from t_real_estate tre
+    join t_user tu on tre.user_Id = tu.id
+   <include refid="whereSql"/>
+</select>
+
+  <!--&lt;!&ndash;关联用戶表查询&ndash;&gt;
+  <select id="queryPageList" parameterType="RealEstateQuery" resultMap="BaseResultMap" >
+    select <include refid="param"/>,tu.name tname ,tu.card_Id tucard
+    from t_real_estate tre
+    join t_user tu on tre.user_Id = tu.id
+    <include refid="whereSql"/>
+  </select>-->
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_real_estate
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.wutao.ei.domain.RealEstate">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_real_estate (id, projectName, address, 
+      houseType, area, buidTime, 
+      user_Id)
+    values (#{id,jdbcType=BIGINT}, #{projectname,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{housetype,jdbcType=VARCHAR}, #{area,jdbcType=INTEGER}, #{buidtime,jdbcType=BIGINT},
+      #{userId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.wutao.ei.domain.RealEstate">
+    update t_real_estate
+    set projectName = #{projectname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      houseType = #{housetype,jdbcType=VARCHAR},
+      area = #{area,jdbcType=INTEGER},
+      buidTime = #{buidtime,jdbcType=BIGINT},
+      user_Id = #{userId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, projectName, address, houseType, area, buidTime, user_Id
+    from t_real_estate
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, projectName, address, houseType, area, buidTime, user_Id
+    from t_real_estate
+  </select>
+</mapper>
